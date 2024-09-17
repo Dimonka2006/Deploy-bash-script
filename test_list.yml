@@ -1,3 +1,5 @@
+# code: language=ansible
+
   - hosts: all
     vars:
       script_list:
