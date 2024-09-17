@@ -12,3 +12,8 @@
          with_items: "{{ script_list }}"
          loop_control:
            loop_var: script_name
+
+    tasks:
+
+       - name: test
+         copy 
