@@ -1,4 +1,4 @@
 - name: Download bash scripts from repository
   git:
     repo: "{{ script_list }}"
-    dest: "/script_sh"
+    dest: "/bash_script"
