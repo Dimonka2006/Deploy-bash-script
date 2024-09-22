@@ -1,16 +1,30 @@
-  - hosts: all
+  - hosts: mail, yandex
     become: yes
     
     vars:
-      script_list:
+      script_list_1:
         - arch.sh
         - backup_deploy.sh
         - report.sh
-
+      script_list_2:
+        - arch.sh
+        - backup_deploy.sh
+        - copy_server_all.sh
 
     tasks:
-       - name: Deploy bash scripts
-         include_tasks: deploy_script.yml
-         with_items: "{{ script_list }}"
-         loop_control:
-           loop_var: script_name
+      - name: Deploy bash scripts at mail
+        include_tasks: deploy_script.yml
+        with_items: "{{ script_list_1 }}"
+        loop_control:
+          loop_var: script_name
+      when: ansible_hostname ==  "mail" 
+
+      - name: Deploy bash scripts at yandex
+        include_tasks: deploy_script.yml
+        with_items: "{{ script_list_2 }}"
+        loop_control:
+          loop_var: script_name
+      when: ansible_hostname ==  "yandex" 
+
+
+
