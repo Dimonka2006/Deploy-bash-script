@@ -22,7 +22,7 @@
       loop_control:
         loop_var: script_name
       dest: "{{file_dest}}"     
-      mode: 0777
+      mode: 0755
 
 
       #when: inventory_hostname == 'mail'
