@@ -1,0 +1,29 @@
+- name: Download bash scripts from repo
+  hosts: mail, yandex
+  become: yes
+    
+  vars:
+    script_list:
+      - bush_script/arch.sh
+      - bush_script/backup_deploy.sh
+      - bush_script/report.sh 
+
+    file_dest: /home/dus/bash_scripts
+
+  tasks:
+    - name: Grete Folder
+      file:
+        path: "{{file_dest}}"
+        state: directory
+
+    - name: Deploy bash scripts
+      include_tasks: deploy_script_1.yml
+      with_items: "{{script_list}}"
+      loop_control:
+        loop_var: script_name
+      dest: "{{file_dest}}"     
+      mode: 0777
+
+
+      #when: inventory_hostname == 'mail'
+      #when: inventory_hostname == 'yandex'
