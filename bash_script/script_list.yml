@@ -1,9 +1,0 @@
-mail_scripts:
-  - arch.sh
-  - backup_deploy.sh
-  - report.sh
-
-yandex_scripts:
-  - arch.sh
-  - backup_deploy.sh
-  - copy_server_all.sh
